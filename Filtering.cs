@@ -10,10 +10,30 @@ namespace OmegaSuduko
 {
     internal class Filtering
     {
-        public int[,] sudukoBoard = StringToBoard(); // Importing the suduko board
+        public static int[,] sudukoBoard = StringToBoard(); // Importing the suduko board
 
         // Making a hashset matrix. Every cell in the matrix represents the inital possible numbers
         // that the original suduko board's cell can contain - from 1 to N.
-        public HashSet<int>[,] hashBoard = new HashSet<int>[N, N];
+        public static HashSet<int>[,] hashBoard = new HashSet<int>[N, N];
+
+
+        /// <summary>
+        /// This function inits the hashboard: if the number in the same cell in the suduko board matrix
+        /// itself is not zero, so set it to this number since it is certain. If it is zero, set the 
+        /// hashset to contain every possible number from 1 to N.
+        /// </summary>
+        public static void InitHashBoard()
+        {
+            for (int i = 0; i < N; i++)
+            {
+                for (int j = 0; j < N; j++)
+                {
+                    if (sudukoBoard[i, j] != 0)
+                        hashBoard[i, j] = new HashSet<int>(sudukoBoard[i, j]);
+                    else
+                        hashBoard[i, j] = new HashSet<int>(Enumerable.Range(1, N));
+                }
+            }
+        }
     }
 }
