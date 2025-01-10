@@ -10,7 +10,7 @@ namespace OmegaSuduko
     internal class Validations
     {
         // A hashset that contains all the legal characters that can appear in the suduko's string.
-        public static HashSet<int> validCharsInString = new HashSet<int>(Enumerable.Range(0, N + 1));
+        private static HashSet<int> validCharsInString = new HashSet<int>(Enumerable.Range(0, N + 1));
 
         /// <summary>
         /// The function gets the suduko board's string from the user and validates that every char is valid.
