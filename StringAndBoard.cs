@@ -9,7 +9,11 @@ namespace OmegaSuduko
 {
     public class StringAndBoard
     {
-        // This function converts the suduko board's string to the board itself.
+        /// <summary>
+        /// This function converts the suduko board's string to its matrix form.
+        /// </summary>
+        /// <returns>The matrix form of the string.
+        /// </returns>
         public static int[,] StringToBoard()
         {
             int[,] sudukoBoard = new int[N, N];
@@ -20,7 +24,12 @@ namespace OmegaSuduko
             return sudukoBoard;
         }
 
-        // This function converts the suduko board to the string that represents it.
+        /// <summary>
+        /// This function converts the suduko board to its string form.
+        /// </summary>
+        /// <param name="sudukoBoard">The suduko board represented as a matrix.</param>
+        /// <returns>The string form of the board.
+        /// </returns>
         public static string BoardToString(int[,] sudukoBoard)
         {
             string sudukoString = "";
@@ -32,6 +41,16 @@ namespace OmegaSuduko
                 }
             }
             return sudukoString;
+        }
+
+        /// <summary>
+        /// This function gets a suduko board and prints it to the screen.
+        /// </summary>
+        /// <param name="sudukoBoard">The suduko board represented as a matrix.
+        /// </param>
+        public static void PrintSudukoBoard(int[,] sudukoBoard)
+        {
+
         }
     }
 }
