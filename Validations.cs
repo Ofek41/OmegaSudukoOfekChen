@@ -12,7 +12,12 @@ namespace OmegaSuduko
         // A hashset that contains all the legal characters that can appear in the suduko's string.
         public static HashSet<int> validCharsInString = new HashSet<int>(Enumerable.Range(0, N + 1));
 
-        // This function validates the suduko's string and makes sure every char is legal.
+        /// <summary>
+        /// The function gets the suduko board's string from the user and validates that every char is valid.
+        /// if not, a message pops up with all the information.
+        /// </summary>
+        /// <returns>returns true if the string is legal and false if not.
+        /// </returns>
         public static bool ValidateCharsInString()
         {
             bool isLegal = true;
@@ -28,13 +33,21 @@ namespace OmegaSuduko
             return isLegal;
         }
 
-        // This function validates the suduko string's length.
+        /// <summary>
+        /// This function checks if the suduko board's string's length is legald and equals to the
+        /// dimension squared.
+        /// </summary>
+        /// <returns>returns true if the length is valid and false if not.</returns>
         public static bool ValidateStringLength()
         {
             return boardString.Length == N * N;
         }
 
-        // This function makes sure the suduko's string contains at least one 0.
+        /// <summary>
+        /// This function checks if the suduko board's string contains a zero. If not, it means that the board
+        /// is full and does not need to be solved.
+        /// </summary>
+        /// <returns>returns true if the string contains a 0 and false if not.</returns>
         public static bool NeedsToBeSolved()
         {
             if (!boardString.Contains('0'))
@@ -45,7 +58,10 @@ namespace OmegaSuduko
             return true;
         } 
 
-        // A function that contains all the validations.
+        /// <summary>
+        /// This function gathers all the validations.
+        /// </summary>
+        /// <returns>returns true if all the validations passed successfully, and false if not.</returns>
         public static bool TotalValidation()
         {
             return ValidateCharsInString() && ValidateStringLength() && NeedsToBeSolved();
