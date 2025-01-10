@@ -33,5 +33,11 @@ namespace OmegaSuduko
             }
             return sudukoString;
         }
+
+        // This function gets a suduko board represented as a matrix and prints it to the screen.
+        public static void PrintSudukoBoard(int[,] sudukoBoard)
+        {
+
+        }
     }
 }
