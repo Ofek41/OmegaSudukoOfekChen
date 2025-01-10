@@ -7,7 +7,7 @@ using static OmegaSuduko.Program;
 
 namespace OmegaSuduko
 {
-    internal class StringAndBoard
+    public class StringAndBoard
     {
         // This function converts the suduko board's string to the board itself.
         public static int[,] StringToBoard()
