@@ -23,10 +23,10 @@ namespace OmegaSuduko
             bool isLegal = true;
             for (int i = 0; i<boardString.Length; i++)
             {
-                char ch = boardString[i];
-                if (!validCharsInString.Contains(ch - '0'))
+                char character = boardString[i];
+                if (!validCharsInString.Contains(character - '0'))
                 {
-                    Console.WriteLine($"Invalid character {ch} in position {i+1}!");
+                    Console.WriteLine($"Invalid character {character} in position {i+1}!");
                     isLegal = false;
                 }
             }
@@ -34,7 +34,7 @@ namespace OmegaSuduko
         }
 
         /// <summary>
-        /// This function checks if the suduko board's string's length is legald and equals to the
+        /// This function checks if the suduko board's string's length is legal and equals to the
         /// dimension squared.
         /// </summary>
         /// <returns>returns true if the length is valid and false if not.</returns>
@@ -57,6 +57,18 @@ namespace OmegaSuduko
             }
             return true;
         } 
+        
+        /// <summary>
+        /// This function checks if the N, dimension of the board, is a perfect square so it will be able
+        /// to make a board.
+        /// </summary>
+        /// <returns>returns true if the condition is true, and false if not.</returns>
+        public static bool Is_N_A_Perfect_Square()
+        {
+            if (N < 0) return false;
+            int sqrt = (int)Math.Sqrt(N);
+            return sqrt * sqrt == N;
+        }
 
         /// <summary>
         /// This function gathers all the validations.
@@ -64,7 +76,8 @@ namespace OmegaSuduko
         /// <returns>returns true if all the validations passed successfully, and false if not.</returns>
         public static bool TotalValidation()
         {
-            return ValidateCharsInString() && ValidateStringLength() && NeedsToBeSolved();
+            return ValidateCharsInString() && ValidateStringLength() && NeedsToBeSolved()
+                && Is_N_A_Perfect_Square();
         }
     }
 }
