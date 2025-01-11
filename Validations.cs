@@ -26,7 +26,7 @@ namespace OmegaSuduko
                 char character = boardString[i];
                 if (!validCharsInString.Contains(character - '0'))
                 {
-                    Console.WriteLine($"Invalid character {character} in position {i+1}!");
+                    Console.WriteLine($"Invalid character '{character}' in position {i+1}.");
                     isLegal = false;
                 }
             }
@@ -58,17 +58,6 @@ namespace OmegaSuduko
             return true;
         } 
         
-        /// <summary>
-        /// This function checks if the N, dimension of the board, is a perfect square so it will be able
-        /// to make a board.
-        /// </summary>
-        /// <returns>returns true if the condition is true, and false if not.</returns>
-        public static bool Is_N_A_Perfect_Square()
-        {
-            if (N < 0) return false;
-            int sqrt = (int)Math.Sqrt(N);
-            return sqrt * sqrt == N;
-        }
 
         /// <summary>
         /// This function gathers all the validations.
@@ -76,8 +65,28 @@ namespace OmegaSuduko
         /// <returns>returns true if all the validations passed successfully, and false if not.</returns>
         public static bool TotalValidation()
         {
-            return ValidateCharsInString() && ValidateStringLength() && NeedsToBeSolved()
-                && Is_N_A_Perfect_Square();
+            return ValidateCharsInString() && ValidateStringLength() && NeedsToBeSolved();
+        }
+
+        /// <summary>
+        /// This function checks if the N, dimension of the board, is a perfect square so it will be able
+        /// to make a board.
+        /// </summary>
+        /// <returns>returns true if the condition is true, and false if not.</returns>
+        public static bool Validate_N()
+        {
+            if (N < 0)
+            {
+                Console.WriteLine("Suduko board dimension cannot be a negative number.");
+                return false;
+            }
+            int sqrt = (int)Math.Sqrt(N);
+            if (sqrt * sqrt!=N)
+            {
+                Console.WriteLine("Suduko board dimension has to be a perfect square.");
+                return false;
+            }
+            return true;
         }
     }
 }

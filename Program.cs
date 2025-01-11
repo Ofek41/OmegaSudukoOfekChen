@@ -1,4 +1,5 @@
-﻿namespace OmegaSuduko
+﻿using static OmegaSuduko.Validations;
+namespace OmegaSuduko
 {
     internal class Program
     {

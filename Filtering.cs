@@ -30,7 +30,7 @@ namespace OmegaSuduko
                 for (int j = 0; j < N; j++)
                 {
                     if (sudukoBoard[i, j] != 0)
-                        hashBoard[i, j] = new HashSet<int>(sudukoBoard[i, j]);
+                        hashBoard[i, j] = new HashSet<int>(new[] { sudukoBoard[i, j] });
                     else
                         hashBoard[i, j] = new HashSet<int>(Enumerable.Range(1, N));
                 }
@@ -90,6 +90,57 @@ namespace OmegaSuduko
                 }
             }
             return false;
+        }
+
+        /// <summary>
+        /// This function updates the hashboard matrix that every set will contain only the possible numbers
+        /// according to the suduko rules - that a certain number cannot appear twice or more in the same
+        /// row, column or inner square.
+        /// </summary>
+        public static void UpdateHashBoardMatrix()
+        {
+            for (int row = 0; row < N; row++)
+            {
+                for (int column = 0; column < N; column++)
+                {
+                    if (sudukoBoard[row,column]==0)
+                    {
+                        HashSet<int> possibleNumbers = new HashSet<int>(hashBoard[row, column]);
+
+                        // for every number in the set check it according to the suduko rules:
+                        foreach (int number in new HashSet<int>(possibleNumbers))
+                        {
+                            if (ExistsInRow(row, number) || ExistsInColumn(column, number) ||
+                                ExistsInInnerSquare(row, column, number))
+                                hashBoard[row, column].Remove(number);
+                        }
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// This function updates empty cells in the suduko board matrix that according to the hasboard
+        /// matrix, have only one possible number that can appear in them.
+        /// </summary>
+        /// <returns>returns true if any update was made in the board, and false if not.</returns>
+        public static bool InsertCertainNumbers()
+        {
+            bool isUpdated = false;
+            for (int row = 0; row < N; row++)
+            {
+                for (int column = 0; column < N; column++)
+                {
+                    if (sudukoBoard[row,column]==0 && hashBoard[row,column].Count == 1)
+                    {
+                        // A certain number was found - so we need to update the suduko board:
+                        sudukoBoard[row, column] = hashBoard[row, column].First();
+                        hashBoard[row, column] = new HashSet<int> { sudukoBoard[row, column] };
+                        isUpdated = true;
+                    }
+                }
+            }
+            return isUpdated;
         }
     }
 }
