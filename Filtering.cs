@@ -142,5 +142,45 @@ namespace OmegaSuduko
             }
             return isUpdated;
         }
+
+        /// <summary>
+        /// This function checks if the hashset board contains any empty set. If so, it means that
+        /// the specific cell cannot contain any possible number and the suduko is not solvable.
+        /// </summary>
+        /// <returns>returns true if an empty set was found and false if not.</returns>
+        public static bool DoesContainEmptySet()
+        {
+            for (int row = 0; row < N; row++)
+            {
+                for (int column = 0; column < N; column++)
+                {
+                    if (sudukoBoard[row, column] == 0 && hashBoard[row, column].Count == 0)
+                        return true;
+                }
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// This function gathers all the filtering functions for the boards.
+        /// </summary>
+        /// <returns>returns true if the filtering was performed successfully and false if not.</returns>
+        public static bool FilterTheBoard()
+        {
+            InitHashBoard();
+            bool isUpdated;
+            do
+            {
+                UpdateHashBoardMatrix();
+                isUpdated = InsertCertainNumbers();
+                if (DoesContainEmptySet())
+                {
+                    Console.WriteLine("This suduko board is not solvable.");
+                    return false;
+                }
+            }
+            while (isUpdated);
+            return true;
+        }
     }
 }
