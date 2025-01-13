@@ -48,7 +48,9 @@ namespace OmegaSuduko
             for (int column = 0; column < N; column++)
             {
                 if (sudukoBoard[row, column] == number)
+                {
                     return true;
+                }
             }
             return false;
         }
@@ -64,7 +66,9 @@ namespace OmegaSuduko
             for (int row = 0; row < N; row++)
             {
                 if (sudukoBoard[row, column] == number)
+                {
                     return true;
+                }
             }
             return false;
         }
@@ -81,12 +85,15 @@ namespace OmegaSuduko
             int squareSize = (int)Math.Sqrt(N);
             int rowSquareBegin = (row / squareSize) * squareSize;
             int columnSquareBegin = (column / squareSize) * squareSize;
+
             for (int i = 0; i < squareSize; i++)
             {
                 for (int j = 0; j < squareSize; j++)
                 {
                     if (sudukoBoard[rowSquareBegin + i, columnSquareBegin + j] == number)
+                    {
                         return true;
+                    }
                 }
             }
             return false;
@@ -103,16 +110,16 @@ namespace OmegaSuduko
             {
                 for (int column = 0; column < N; column++)
                 {
-                    if (sudukoBoard[row,column]==0)
+                    if (sudukoBoard[row, column] == 0)
                     {
                         HashSet<int> possibleNumbers = new HashSet<int>(hashBoard[row, column]);
 
-                        // for every number in the set check it according to the suduko rules:
                         foreach (int number in new HashSet<int>(possibleNumbers))
                         {
-                            if (ExistsInRow(row, number) || ExistsInColumn(column, number) ||
-                                ExistsInInnerSquare(row, column, number))
+                            if (ExistsInRow(row, number) || ExistsInColumn(column, number) || ExistsInInnerSquare(row, column, number))
+                            {
                                 hashBoard[row, column].Remove(number);
+                            }
                         }
                     }
                 }
@@ -131,7 +138,7 @@ namespace OmegaSuduko
             {
                 for (int column = 0; column < N; column++)
                 {
-                    if (sudukoBoard[row,column]==0 && hashBoard[row,column].Count == 1)
+                    if (sudukoBoard[row, column] == 0 && hashBoard[row, column].Count == 1)
                     {
                         // A certain number was found - so we need to update the suduko board:
                         sudukoBoard[row, column] = hashBoard[row, column].First();
@@ -155,7 +162,11 @@ namespace OmegaSuduko
                 for (int column = 0; column < N; column++)
                 {
                     if (sudukoBoard[row, column] == 0 && hashBoard[row, column].Count == 0)
+                    {
+                        Console.WriteLine($"Impossible insertion was found at row {row + 1}" +
+                            $" column {column + 1}.");
                         return true;
+                    }
                 }
             }
             return false;
