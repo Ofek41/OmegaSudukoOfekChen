@@ -16,7 +16,7 @@ namespace OmegaSuduko
         /// <param name="row">the row's index of the number we are currently checking</param>
         /// <param name="column">the column's index of the number we are currently checking</param>
         /// <param name="number">the number we are currently checking</param>
-        /// <returns>returns true if the number is valid and false if not.</returns>
+        /// <returns>returns true if the number is valid and false if not</returns>
         public static bool IsNumberValid(int row, int column, int number)
         {
             return !ExistsInRow(row, number) &&
