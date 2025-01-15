@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using static OmegaSuduko.Program;
+using static OmegaSuduko.Filtering;
 
 namespace OmegaSuduko
 {
@@ -44,13 +45,33 @@ namespace OmegaSuduko
         }
 
         /// <summary>
-        /// This function gets a suduko board and prints it to the screen.
+        /// This function prints the integer matrix suduko board.
         /// </summary>
-        /// <param name="sudukoBoard">The suduko board represented as a matrix.
-        /// </param>
-        public static void PrintSudukoBoard(int[,] sudukoBoard)
+        public static void PrintRegularSudukoBoard()
         {
+            for (int i =0; i < N; i++)
+            {
+                for (int j = 0; j < N; j++)
+                {
+                    Console.Write(sudukoBoard[i,j] + " ");
+                }
+                Console.WriteLine();
+            }
+        }
 
+        /// <summary>
+        /// This function prints the hashsets matrix suduko board in form of regular integer one.
+        /// </summary>
+        public static void PrintSetsSudukoBoard()
+        {
+            for (int i = 0; i < N; i++)
+            {
+                for (int j = 0; j < N; j++)
+                {
+                    Console.Write(hashBoard[i,j].First() + " ");
+                }
+                Console.WriteLine();
+            }
         }
     }
 }
