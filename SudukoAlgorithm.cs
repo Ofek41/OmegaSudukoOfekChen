@@ -51,5 +51,29 @@ namespace OmegaSuduko
             }
             return row != -1 && column != -1;
         }
+
+        /// <summary>
+        /// This function solves the suduko board while using the BACKTRACKING algorithm,
+        /// using all the previous functions.
+        /// </summary>
+        /// <returns>returns true if the board was solved successfully and false if not.</returns>
+        public static bool Solve()
+        {
+            if (!FindNextSmallestCell(out int row, out int column))
+                return true;
+            foreach (int number in hashBoard[row,column])
+            {
+                if (IsNumberValid(row, column, number))
+                {
+                    sudukoBoard[row, column] = number;
+
+                    if (Solve())
+                        return true;
+
+                    sudukoBoard[row, column] = 0;
+                }
+            }
+            return false;
+        }
     }
 }
