@@ -23,5 +23,33 @@ namespace OmegaSuduko
                 !ExistsInColumn(column, number) &&
                 !ExistsInInnerSquare(row, column, number);
         }
+
+        /// <summary>
+        /// This function finds the cell in the board with the least options of numbers, and that is for
+        /// making the algorithm more efficent.
+        /// </summary>
+        /// <param name="row">the row index of the cell found</param>
+        /// <param name="column">the column index of the cell found</param>
+        /// <returns>returns true if a cell was found and false if not</returns>
+        public static bool FindNextSmallestCell(out int row, out int column)
+        {
+            row = -1;
+            column = -1;
+            int counterMinimumOptions = N+1;
+            for (int i = 0; i < N; i++)
+            {
+                for (int j = 0; j < N; j++)
+                {
+                    if (sudukoBoard[i,j] == 0 && hashBoard[i,j].Count > 0)
+                    {
+                        // Choosing the cell with the least possible options:
+                        counterMinimumOptions = hashBoard[i, j].Count;
+                        row = i;
+                        column = j;
+                    }
+                }
+            }
+            return row != -1 && column != -1;
+        }
     }
 }
