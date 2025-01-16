@@ -39,7 +39,12 @@ namespace OmegaSuduko
         /// <returns>returns true if the length is valid and false if not.</returns>
         public static bool ValidateStringLength(string boardString, int boardDimension)
         {
-            return boardString.Length == boardDimension * boardDimension;
+            if (boardString.Length != boardDimension * boardDimension)
+            {
+                Console.WriteLine("The string's length does not fit the board dimension you inserted.");
+                return false;
+            }
+            return true;
         }
 
         /// <summary>
