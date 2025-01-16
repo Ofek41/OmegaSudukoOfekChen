@@ -19,7 +19,6 @@ namespace OmegaSuduko
                     Console.WriteLine("Goodbye, thank you for using the suduko solver!");
                     return;
                 }
-
             }
         }
     }

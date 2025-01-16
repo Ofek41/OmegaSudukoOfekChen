@@ -47,28 +47,13 @@ namespace OmegaSuduko
         /// <summary>
         /// This function prints the integer matrix suduko board.
         /// </summary>
-        public static void PrintRegularSudukoBoard()
+        public static void PrintSudukoBoard()
         {
             for (int i =0; i < N; i++)
             {
                 for (int j = 0; j < N; j++)
                 {
                     Console.Write(sudukoBoard[i,j] + " ");
-                }
-                Console.WriteLine();
-            }
-        }
-
-        /// <summary>
-        /// This function prints the hashsets matrix suduko board in form of regular integer one.
-        /// </summary>
-        public static void PrintSetsSudukoBoard()
-        {
-            for (int i = 0; i < N; i++)
-            {
-                for (int j = 0; j < N; j++)
-                {
-                    Console.Write(hashBoard[i,j].First() + " ");
                 }
                 Console.WriteLine();
             }
