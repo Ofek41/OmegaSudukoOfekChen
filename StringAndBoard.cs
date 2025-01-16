@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static OmegaSuduko.Program;
-using static OmegaSuduko.Filtering;
 
 namespace OmegaSuduko
 {
@@ -15,12 +13,12 @@ namespace OmegaSuduko
         /// </summary>
         /// <returns>The matrix form of the string.
         /// </returns>
-        public static int[,] StringToBoard()
+        public static int[,] StringToBoard(int boardDimension, string boardString)
         {
-            int[,] sudukoBoard = new int[N, N];
-            for (int i = 0; i < N*N; i++)
+            int[,] sudukoBoard = new int[boardDimension, boardDimension];
+            for (int i = 0; i < boardDimension*boardDimension; i++)
             {
-                sudukoBoard[i / N, i % N] = boardString[i] - '0';
+                sudukoBoard[i / boardDimension, i % boardDimension] = boardString[i] - '0';
             }
             return sudukoBoard;
         }
@@ -31,12 +29,12 @@ namespace OmegaSuduko
         /// <param name="sudukoBoard">The suduko board represented as a matrix.</param>
         /// <returns>The string form of the board.
         /// </returns>
-        public static string BoardToString(int[,] sudukoBoard)
+        public static string BoardToString(int[,] sudukoBoard, int boardDimension)
         {
             string sudukoString = "";
-            for (int i =0; i < N; i++)
+            for (int i =0; i < boardDimension; i++)
             {
-                for (int j = 0; j < N; j++)
+                for (int j = 0; j < boardDimension; j++)
                 {
                     sudukoString += sudukoBoard[i, j].ToString();
                 }
@@ -47,11 +45,11 @@ namespace OmegaSuduko
         /// <summary>
         /// This function prints the integer matrix suduko board.
         /// </summary>
-        public static void PrintSudukoBoard()
+        public static void PrintSudukoBoard(int[,] sudukoBoard, int boardDimension)
         {
-            for (int i =0; i < N; i++)
+            for (int i =0; i < boardDimension; i++)
             {
-                for (int j = 0; j < N; j++)
+                for (int j = 0; j < boardDimension; j++)
                 {
                     Console.Write(sudukoBoard[i,j] + " ");
                 }

@@ -3,14 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static OmegaSuduko.Program;
 
 namespace OmegaSuduko
 {
     internal class Validations
     {
-        // A hashset that contains all the legal characters that can appear in the suduko's string.
-        private static HashSet<int> validCharsInString = new HashSet<int>(Enumerable.Range(0, N + 1));
 
         /// <summary>
         /// The function gets the suduko board's string from the user and validates that every char is valid.
@@ -18,8 +15,10 @@ namespace OmegaSuduko
         /// </summary>
         /// <returns>returns true if the string is legal and false if not.
         /// </returns>
-        public static bool ValidateCharsInString()
+        public static bool ValidateCharsInString(string boardString, int boardDimension)
         {
+            // A hashset that contains all the legal characters that can appear in the suduko's string:
+            HashSet<int> validCharsInString = new HashSet<int>(Enumerable.Range(0, boardDimension + 1));
             bool isLegal = true;
             for (int i = 0; i<boardString.Length; i++)
             {
@@ -38,9 +37,9 @@ namespace OmegaSuduko
         /// dimension squared.
         /// </summary>
         /// <returns>returns true if the length is valid and false if not.</returns>
-        public static bool ValidateStringLength()
+        public static bool ValidateStringLength(string boardString, int boardDimension)
         {
-            return boardString.Length == N * N;
+            return boardString.Length == boardDimension * boardDimension;
         }
 
         /// <summary>
@@ -48,7 +47,7 @@ namespace OmegaSuduko
         /// is full and does not need to be solved.
         /// </summary>
         /// <returns>returns true if the string contains a 0 and false if not.</returns>
-        public static bool NeedsToBeSolved()
+        public static bool NeedsToBeSolved(string boardString)
         {
             if (!boardString.Contains('0'))
             {
@@ -63,9 +62,10 @@ namespace OmegaSuduko
         /// This function gathers all the validations.
         /// </summary>
         /// <returns>returns true if all the validations passed successfully, and false if not.</returns>
-        public static bool TotalValidation()
+        public static bool TotalValidation(string boardString, int boardDimension)
         {
-            return ValidateCharsInString() && ValidateStringLength() && NeedsToBeSolved();
+            return ValidateCharsInString(boardString, boardDimension)
+                && ValidateStringLength(boardString, boardDimension) && NeedsToBeSolved(boardString);
         }
 
         /// <summary>
@@ -73,15 +73,15 @@ namespace OmegaSuduko
         /// to make a board.
         /// </summary>
         /// <returns>returns true if the condition is true, and false if not.</returns>
-        public static bool Validate_N()
+        public static bool ValidateBoardDimension(int boardDimension)
         {
-            if (N < 0)
+            if (boardDimension < 0 && boardDimension!=-1)
             {
                 Console.WriteLine("Suduko board dimension cannot be a negative number.");
                 return false;
             }
-            int sqrt = (int)Math.Sqrt(N);
-            if (sqrt * sqrt!=N)
+            int sqrt = (int)Math.Sqrt(boardDimension);
+            if (sqrt * sqrt!=boardDimension)
             {
                 Console.WriteLine("Suduko board dimension has to be a perfect square.");
                 return false;
