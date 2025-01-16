@@ -5,14 +5,16 @@ namespace OmegaSuduko
 {
     internal class Program
     {
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
             string boardString = "";
-            int boardDimension;
             while (true)
             {
                 Console.Write("Please enter the suduk board's dimension, enter (-1) to stop: ");
-                boardDimension = int.Parse(Console.ReadLine());
+                if (!int.TryParse(Console.ReadLine(), out int boardDimension)) {
+                    Console.WriteLine("Board dimension has to be an integer.");
+                    continue;
+                }
                 if (boardDimension == -1)
                 {
                     Console.WriteLine("Goodbye, thank you for using the suduko solver!");
