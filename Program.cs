@@ -17,24 +17,24 @@ namespace OmegaSuduko
                 }
                 if (boardDimension == -1)
                 {
-                    Console.WriteLine("Goodbye, thank you for using the suduko solver!");
+                    Console.WriteLine("Goodbye, thank you for using the sudoku solver!");
                     return;
                 }
                 if (ValidateBoardDimension(boardDimension))
                 {
-                    Console.Write("Please enter the suduko board's representing string: ");
+                    Console.Write("Please enter the sudoku board's representing string: ");
                     boardString = Console.ReadLine();
                 }
                 if (TotalValidation(boardString, boardDimension))
                 {
-                    OmegaSuduko.SudokuGame suduko = new SudokuGame(boardDimension, boardString);
-                    int[,] board = suduko.GetSudukoBoard();
+                    SudokuAlgorithm sudoku = new SudokuAlgorithm(boardDimension, boardString);
+                    int[,] board = sudoku.GetSudokuBoard();
                     Console.WriteLine("\nThe board you inserted is: ");
-                    PrintSudukoBoard(board, boardDimension);
-                    suduko.FilterTheBoard(boardDimension);
-                    suduko.Solve(boardDimension);
+                    PrintSudokuBoard(board, boardDimension);
+                    sudoku.FilterTheBoard(boardDimension);
+                    sudoku.Solve(boardDimension);
                     Console.WriteLine("\nThe solved board is: ");
-                    PrintSudukoBoard(board, boardDimension);
+                    PrintSudokuBoard(board, boardDimension);
                     Console.Write("\nThe solved board's representing string is: " + BoardToString(board, boardDimension));
                     Console.WriteLine();
                 }

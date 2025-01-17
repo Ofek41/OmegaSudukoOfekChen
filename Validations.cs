@@ -10,14 +10,14 @@ namespace OmegaSuduko
     {
 
         /// <summary>
-        /// The function gets the suduko board's string from the user and validates that every char is valid.
+        /// The function gets the sudoku board's string from the user and validates that every char is valid.
         /// if not, a message pops up with all the information.
         /// </summary>
         /// <returns>returns true if the string is legal and false if not.
         /// </returns>
         public static bool ValidateCharsInString(string boardString, int boardDimension)
         {
-            // A hashset that contains all the legal characters that can appear in the suduko's string:
+            // A hashset that contains all the legal characters that can appear in the sudoku's string:
             HashSet<int> validCharsInString = new HashSet<int>(Enumerable.Range(0, boardDimension + 1));
             bool isLegal = true;
             for (int i = 0; i<boardString.Length; i++)
@@ -33,7 +33,7 @@ namespace OmegaSuduko
         }
 
         /// <summary>
-        /// This function checks if the suduko board's string's length is legal and equals to the
+        /// This function checks if the sudoku board's string's length is legal and equals to the
         /// dimension squared.
         /// </summary>
         /// <returns>returns true if the length is valid and false if not.</returns>
@@ -53,7 +53,7 @@ namespace OmegaSuduko
         }
 
         /// <summary>
-        /// This function checks if the suduko board's string contains a zero. If not, it means that the board
+        /// This function checks if the sudoku board's string contains a zero. If not, it means that the board
         /// is full and does not need to be solved.
         /// </summary>
         /// <returns>returns true if the string contains a 0 and false if not.</returns>
@@ -61,7 +61,7 @@ namespace OmegaSuduko
         {
             if (!boardString.Contains('0'))
             {
-                Console.WriteLine("The suduko doesn't contains a 0, therefore doesn't need to be solved.");
+                Console.WriteLine("The sudoku doesn't contains a 0, therefore doesn't need to be solved.");
                 return false;
             }
             return true;
@@ -87,13 +87,13 @@ namespace OmegaSuduko
         {
             if (boardDimension < 0 && boardDimension!=-1)
             {
-                Console.WriteLine("Suduko board dimension cannot be a negative number.");
+                Console.WriteLine("Sudoku board dimension cannot be a negative number.");
                 return false;
             }
             int sqrt = (int)Math.Sqrt(boardDimension);
             if (sqrt * sqrt!=boardDimension)
             {
-                Console.WriteLine("Suduko board dimension has to be a perfect square.");
+                Console.WriteLine("Sudoku board dimension has to be a perfect square.");
                 return false;
             }
             return true;
