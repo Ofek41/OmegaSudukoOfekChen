@@ -31,12 +31,18 @@ namespace OmegaSuduko
                     int[,] board = sudoku.GetSudokuBoard();
                     Console.WriteLine("\nThe board you inserted is: ");
                     PrintSudokuBoard(board, boardDimension);
-                    sudoku.FilterTheBoard(boardDimension);
-                    sudoku.Solve(boardDimension);
-                    Console.WriteLine("\nThe solved board is: ");
-                    PrintSudokuBoard(board, boardDimension);
-                    Console.Write("\nThe solved board's representing string is: " + BoardToString(board, boardDimension));
-                    Console.WriteLine();
+                    bool isFiltered = sudoku.FilterTheBoard(boardDimension);
+                    if (isFiltered)
+                    {
+                        bool isSolved = sudoku.Solve(boardDimension);
+                        if (isSolved)
+                        {
+                            Console.WriteLine("\nThe solved board is: ");
+                            PrintSudokuBoard(board, boardDimension);
+                            Console.Write("\nThe solved board's representing string is: " + BoardToString(board, boardDimension));
+                            Console.WriteLine();
+                        }
+                    }
                 }
             }
         }
