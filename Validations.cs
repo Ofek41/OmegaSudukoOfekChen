@@ -13,6 +13,8 @@ namespace OmegaSuduko
         /// The function gets the sudoku board's string from the user and validates that every char is valid.
         /// if not, a message pops up with all the information.
         /// </summary>
+        /// <param name="boardDimension">The board dimension</param>
+        /// <param name="boardString">The string that represents the board</param>
         /// <returns>returns true if the string is legal and false if not.
         /// </returns>
         public static bool ValidateCharsInString(string boardString, int boardDimension)
@@ -56,6 +58,7 @@ namespace OmegaSuduko
         /// This function checks if the sudoku board's string contains a zero. If not, it means that the board
         /// is full and does not need to be solved.
         /// </summary>
+        /// <param name="boardString">The string that represents the board</param>
         /// <returns>returns true if the string contains a 0 and false if not.</returns>
         public static bool NeedsToBeSolved(string boardString)
         {
@@ -65,12 +68,14 @@ namespace OmegaSuduko
                 return false;
             }
             return true;
-        } 
-        
+        }
+
 
         /// <summary>
         /// This function gathers all the validations.
         /// </summary>
+        /// <param name="boardDimension">The board dimension</param>
+        /// <param name="boardString">The string that represents the board</param>
         /// <returns>returns true if all the validations passed successfully, and false if not.</returns>
         public static bool TotalValidation(string boardString, int boardDimension)
         {
@@ -82,6 +87,7 @@ namespace OmegaSuduko
         /// This function checks if the N, dimension of the board, is a perfect square so it will be able
         /// to make a board.
         /// </summary>
+        /// <param name="boardDimension">The board dimension</param>
         /// <returns>returns true if the condition is true, and false if not.</returns>
         public static bool ValidateBoardDimension(int boardDimension)
         {

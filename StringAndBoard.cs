@@ -11,6 +11,8 @@ namespace OmegaSuduko
         /// <summary>
         /// This function converts the sudoku board's string to its matrix form.
         /// </summary>
+        /// <param name="boardDimension">The sudoku board dimension.</param>
+        /// <param name="boardString">The string that represents the board</param>
         /// <returns>The matrix form of the string.
         /// </returns>
         public static int[,] StringToBoard(int boardDimension, string boardString)
@@ -27,6 +29,7 @@ namespace OmegaSuduko
         /// This function converts the sudoku board to its string form.
         /// </summary>
         /// <param name="sudokuBoard">The sudoku board represented as a matrix.</param>
+        /// <param name="boardDimension">The sudoku board dimension.</param>
         /// <returns>The string form of the board.
         /// </returns>
         public static string BoardToString(int[,] sudokuBoard, int boardDimension)
@@ -44,6 +47,8 @@ namespace OmegaSuduko
 
         /// <summary>
         /// This function prints the integer matrix sudoku board.
+        /// <param name="boardDimension">The sudoku board dimension.</param>
+        /// <param name="sudokuBoard"/>The sudoku board.</param>
         /// </summary>
         public static void PrintSudokuBoard(int[,] sudokuBoard, int boardDimension)
         {
