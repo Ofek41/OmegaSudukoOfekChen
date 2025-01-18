@@ -2,6 +2,7 @@
 using static OmegaSuduko.SudokuGame;
 using static OmegaSuduko.StringAndBoard;
 using static OmegaSuduko.BoardValidations;
+using System.Diagnostics;
 namespace OmegaSuduko
 {
     internal class Program
@@ -32,18 +33,20 @@ namespace OmegaSuduko
                     int[,] board = sudoku.GetSudokuBoard();
                     Console.WriteLine("\nThe board you inserted is: ");
                     PrintSudokuBoard(board, boardDimension);
-                    Console.WriteLine();
                     if (ValidateAllTheBoard(board, boardDimension))
                     {
+                        Stopwatch time = Stopwatch.StartNew();
                         bool isFiltered = sudoku.FilterTheBoard(boardDimension);
                         if (isFiltered)
                         {
                             bool isSolved = sudoku.Solve(boardDimension);
+                            time.Stop();
                             if (isSolved)
                             {
                                 Console.WriteLine("\nThe solved board is: ");
                                 PrintSudokuBoard(board, boardDimension);
-                                Console.Write("\nThe solved board's representing string is: " + BoardToString(board, boardDimension));
+                                Console.Write($"\nThe solved board's representing string is: {BoardToString(board, boardDimension)} \n");
+                                Console.WriteLine($"The board was solved in {time.ElapsedMilliseconds} ms");
                                 Console.WriteLine();
                             }
                         }
