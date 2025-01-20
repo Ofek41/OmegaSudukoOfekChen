@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace OmegaSuduko
 {
-    internal static class BoardValidations
+    public static class BoardValidations
     {
         /// <summary>
         /// This function validates that the inital board does not contain duplicated numbers in the a

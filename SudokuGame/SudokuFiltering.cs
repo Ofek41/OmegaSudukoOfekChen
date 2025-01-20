@@ -11,7 +11,7 @@ namespace OmegaSuduko
         // Inherting constructor
         public SudokuFiltering(int boardDimension, string boardString) : base(boardDimension, boardString)
         {
-            
+
         }
 
         /// <summary>
